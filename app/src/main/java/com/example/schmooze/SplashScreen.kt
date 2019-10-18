@@ -7,7 +7,7 @@ import android.os.Handler
 
 class SplashScreen : AppCompatActivity() {
 
-    private val SPLASH_TIME_OUT:Long=7000  // 7 seconds
+    private val SPLASH_TIME_OUT:Long=5000  // 7 seconds
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

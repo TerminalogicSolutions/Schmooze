@@ -3,22 +3,51 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/activityScheduler">
-
+    app:startDestination="@id/mainFragment">
     <fragment
-        android:id="@+id/mainActivity"
-        android:name="com.example.schmooze.MainActivity"
-        android:label="activity_main"
-        tools:layout="@layout/activity_main" >
-
+        android:id="@+id/mainFragment"
+        android:name="com.example.schmooze.MainFragment"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainActivity_to_blankScheduler"
-            app:destination="@id/activityScheduler"
-        />
+            android:id="@+id/action_mainFragment_to_scheduleFragment"
+            app:destination="@id/scheduleFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_partiesFragment"
+            app:destination="@id/partiesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_templatesFragment"
+            app:destination="@id/templatesFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
-        android:id="@+id/activityScheduler"
-        android:name="com.example.schmooze.ActivityScheduler"
-        android:label="activity_scheduler"
-        tools:layout="@layout/activity_scheduler" />
+        android:id="@+id/scheduleFragment"
+        android:name="com.example.schmooze.ScheduleFragment"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/partiesFragment"
+        android:name="com.example.schmooze.PartiesFragment"
+        android:label="fragment_parties"
+        tools:layout="@layout/fragment_parties" />
+    <fragment
+        android:id="@+id/templatesFragment"
+        android:name="com.example.schmooze.templatesFragment"
+        android:label="fragment_templates"
+        tools:layout="@layout/fragment_templates" />
+    <fragment
+        android:id="@+id/contactsFragment"
+        android:name="com.example.schmooze.contactsFragment"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.schmooze.settingsFragment"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
 </navigation>
