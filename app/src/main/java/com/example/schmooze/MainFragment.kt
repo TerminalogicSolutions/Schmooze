@@ -9,7 +9,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
+import com.android.volley.DefaultRetryPolicy
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import kotlinx.android.synthetic.main.fragment_contacts.*
 import kotlinx.android.synthetic.main.fragment_main.*
+import org.json.JSONObject
 
 /**
  * A simple [Fragment] subclass.
@@ -22,6 +28,12 @@ class MainFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_main, container, false)
+
+        val url = "http://theplayersearch.com/schmooze/?api=getUsers"
+
+
+
+
     }
 
 
@@ -44,6 +56,8 @@ class MainFragment : Fragment() {
             llSettings.setOnClickListener{
                 it.findNavController().navigate(R.id.action_mainFragment_to_settingsFragment)
             }
+
+
     }
 
 

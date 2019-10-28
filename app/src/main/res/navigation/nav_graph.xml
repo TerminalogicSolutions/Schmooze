@@ -19,11 +19,11 @@
             android:id="@+id/action_mainFragment_to_templatesFragment"
             app:destination="@id/templatesFragment" />
         <action
-            android:id="@+id/action_mainFragment_to_contactsFragment"
-            app:destination="@id/contactsFragment" />
-        <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_contactsFragment"
+            app:destination="@id/contactsFragment2" />
     </fragment>
     <fragment
         android:id="@+id/scheduleFragment"
@@ -41,13 +41,13 @@
         android:label="fragment_templates"
         tools:layout="@layout/fragment_templates" />
     <fragment
-        android:id="@+id/contactsFragment"
-        android:name="com.example.schmooze.contactsFragment"
-        android:label="fragment_contacts"
-        tools:layout="@layout/fragment_contacts" />
-    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.schmooze.settingsFragment"
         android:label="fragment_settings"
         tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/contactsFragment2"
+        android:name="com.example.schmooze.ContactsFragment"
+        android:label="fragment_contacts"
+        tools:layout="@layout/fragment_contacts" />
 </navigation>
