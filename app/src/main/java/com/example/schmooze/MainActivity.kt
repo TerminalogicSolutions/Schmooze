@@ -33,8 +33,10 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
+import kotlinx.coroutines.delay
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
@@ -50,11 +52,7 @@ class MainActivity : AppCompatActivity() {
         setupPermissions()
         setupInternetPermissions()
 
-
-
-
-
-        //val url: String = "http://theplayersearch.com/schmooze/?api=getUsers"
+        main()
 
         //var smsNumber = "3362675269"
         //var smsMessage = "Auto Test On Load"
@@ -66,10 +64,20 @@ class MainActivity : AppCompatActivity() {
         //}
 
 
-
-
     }
 
+
+    fun main(){
+        val intent = Intent(this, MyService::class.java)
+        val timer = Timer()
+        val task = object: TimerTask() {
+            override fun run() {
+
+                startService(intent)
+            }
+        }
+        timer.schedule(task, 0, 10000)
+    }
 
     private fun setupPermissions(){
         val permission = ContextCompat.checkSelfPermission(this,
@@ -97,69 +105,7 @@ class MainActivity : AppCompatActivity() {
         ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.INTERNET), MY_PERMISSIONS_REQUEST_INTERNET)
     }
 
-    private fun sendSMS(phoneNumber: String, message: String) {
-        val SENT = "SMS_SENT"
-        val DELIVERED = "SMS_DELIVERED"
 
-        val sentPI = PendingIntent.getBroadcast(
-            this, 0,
-            Intent(SENT), 0
-        )
-
-        val deliveredPI = PendingIntent.getBroadcast(
-            this, 0,
-            Intent(DELIVERED), 0
-        )
-
-        //---when the SMS has been sent---
-        registerReceiver(object : BroadcastReceiver() {
-            override
-            fun onReceive(arg0: Context, arg1: Intent) {
-                when (resultCode) {
-                    Activity.RESULT_OK -> Toast.makeText(
-                        baseContext, "SMS sent",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    SmsManager.RESULT_ERROR_GENERIC_FAILURE -> Toast.makeText(
-                        baseContext, "Generic failure",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    SmsManager.RESULT_ERROR_NO_SERVICE -> Toast.makeText(
-                        baseContext, "No service",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    SmsManager.RESULT_ERROR_NULL_PDU -> Toast.makeText(
-                        baseContext, "Null PDU",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    SmsManager.RESULT_ERROR_RADIO_OFF -> Toast.makeText(
-                        baseContext, "Radio off",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }, IntentFilter(SENT))
-
-        //---when the SMS has been delivered---
-        registerReceiver(object : BroadcastReceiver() {
-            override
-            fun onReceive(arg0: Context, arg1: Intent) {
-                when (resultCode) {
-                    Activity.RESULT_OK -> Toast.makeText(
-                        baseContext, "SMS delivered",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                    Activity.RESULT_CANCELED -> Toast.makeText(
-                        baseContext, "SMS not delivered",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }, IntentFilter(DELIVERED))
-
-        val sms = SmsManager.getDefault()
-        sms.sendTextMessage(phoneNumber, null, message, sentPI, deliveredPI)
-    }
 
 
 
